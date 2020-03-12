@@ -238,6 +238,10 @@ const SYSEX_RESPONSE = {
             board.RESOLUTION.PWM = resolution;
           }
 
+          if(mode === board.MODES.PERIPHERAL) {
+            board.pluggedPeripherals = board.buffer[i+1];
+            capability=0;
+          }
           // DAC Resolution of DAC Outputs
           // if (mode === board.MODES.DAC && board.RESOLUTION.DAC === null) {
           //   board.RESOLUTION.DAC = resolution;
@@ -492,6 +496,7 @@ class Firmata extends Emitter {
       STEPPER: 0x08,
       SERIAL: 0x0A,
       PULLUP: 0x0B,
+      PERIPHERAL : 0x40,
       IGNORE: 0x7F,
       PING_READ: 0x75,
       UNKOWN: 0x10,
